@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学复习 - 速通笔记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            transform: rotate(45deg);
+            z-index: -1;
+            animation: shine 6s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 200, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 200, 255, 0.3);
+            transform: translateX(-5px);
+            box-shadow: 0 8px 20px rgba(0, 200, 255, 0.4);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2em;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.4);
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .pdf-preview {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(0, 150, 255, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pdf-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .course-card:hover .pdf-preview img {
+            transform: scale(1.1);
+        }
+
+        .pdf-icon-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 200, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .course-info {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .course-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-pages {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85em;
+        }
+
+        .course-difficulty {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .difficulty-easy {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.5);
+        }
+
+        .difficulty-medium {
+            background: rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.5);
+        }
+
+        .difficulty-hard {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.5);
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .course-card.loading .loading-overlay {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #00c8ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-image {
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(0, 150, 255, 0.3) 100%);
+            color: white;
+            font-size: 3em;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+        }
+
+        .stats-bar {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00c8ff;
+            display: block;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+            }
+            
+            .back-btn {
+                position: static;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← 返回主页</a>
+        
+        <div class="header">
+            <h1>📐 数学专业速通笔记</h1>
+            <p class="subtitle">点击课程卡片即可查看对应速通笔记PDF</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-number">12</span>
+                <span class="stat-label">门课程</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">856</span>
+                <span class="stat-label">页笔记</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">覆盖率</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4.9</span>
+                <span class="stat-label">平均评分</span>
+            </div>
+        </div>
+
+        <div class="course-grid">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数学分析.pdf" data-tooltip="数学分析速通笔记 - 包含极限、连续、导数、积分等核心概念">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/数学分析_首页.jpg" alt="数学分析" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📊';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">数学分析</div>
+                    <div class="course-description">极限理论、连续函数、微分学、积分学、级数理论等核心内容速记</div>
+                    <div class="course-meta">
+                        <span class="course-pages">128页</span>
+                        <span class="course-difficulty difficulty-hard">较难</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/高等代数.pdf" data-tooltip="高等代数速通笔记 - 线性空间、矩阵理论">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/高等代数_首页.jpg" alt="高等代数" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔢';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">高等代数</div>
+                    <div class="course-description">线性空间、线性变换、矩阵理论、特征值、二次型等重点内容</div>
+                    <div class="course-meta">
+                        <span class="course-pages">96页</span>
+                        <span class="course-difficulty difficulty-medium">中等</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/解析几何.pdf" data-tooltip="解析几何速通笔记 - 向量代数与空间几何">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/解析几何_首页.jpg" alt="解析几何" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📐';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">解析几何</div>
+                    <div class="course-description">向量代数、空间直线平面、二次曲面、坐标变换等知识点</div>
+                    <div class="course-meta">
+                        <span class="course-pages">72页</span>
+                        <span class="course-difficulty difficulty-easy">较易</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/概率论与数理统计.pdf" data-tooltip="概率统计速通笔记 - 概率分布与统计推断">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/概率论与数理统计_首页.jpg" alt="概率论与数理统计" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🎲';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">概率论与数理统计</div>
+                    <div class="course-description">随机变量、概率分布、参数估计、假设检验、回归分析等</div>
+                    <div class="course-meta">
+                        <span class="course-pages">108页</span>
+                        <span class="course-difficulty difficulty-medium">中等</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/常微分方程.pdf" data-tooltip="常微分方程速通笔记 - 解法和应用">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/常微分方程_首页.jpg" alt="常微分方程" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🧮';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">常微分方程</div>
+                    <div class="course-description">一阶方程、高阶线性方程、方程组、稳定性理论等解法总结</div>
+                    <div class="course-meta">
+                        <span class="course-pages">84页</span>
+                        <span class="course-difficulty difficulty-medium">中等</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/复变函数.pdf" data-tooltip="复变函数速通笔记 - 解析函数与积分">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/复变函数_首页.jpg" alt="复变函数" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔷';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">复变函数</div>
+                    <div class="course-description">解析函数、柯西积分、留数定理、共形映射等核心内容</div>
+                    <div class="course-meta">
+                        <span class="course-pages">92页</span>
+                        <span class="course-difficulty difficulty-hard">较难</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <a href="实变函数.pdf" target="_blank" style="text-decoration:none;color:inherit;">
+                <div class="course-card" data-pdf="实变函数.pdf" data-tooltip="实变函数速通笔记 - 测度论与积分">
+                 <div class="pdf-preview">
+                  <img src="实变函数_首页.jpg" alt="实变函数"
+                     onerror="this.style.display='none';
+                              this.parentElement.classList.add('no-image');
+                              this.parentElement.innerHTML += '📏';">
+                  <div class="pdf-icon-overlay">📄</div>
+                 </div>
+                 <div class="course-info">
+                    <div class="course-title">实变函数</div>
+                    <div class="course-description">测度论、勒贝格积分、函数空间、收敛定理等抽象理论
+                </div>
+                    <div class="course-meta">
+                        <span class="course-pages">76页</span>
+                        <span class="course-difficulty difficulty-hard">较难</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+             </div>
+            </a>
+
+            
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数值分析.pdf" data-tooltip="数值分析速通笔记 - 计算方法与算法">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/数值分析_首页.jpg" alt="数值分析" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '💻';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">数值分析</div>
+                    <div class="course-description">插值法、数值积分、线性方程组求解、微分方程数值解</div>
+                    <div class="course-meta">
+                        <span class="course-pages">104页</span>
+                        <span class="course-difficulty difficulty-medium">中等</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/近世代数.pdf" data-tooltip="近世代数速通笔记 - 群环域理论">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/近世代数_首页.jpg" alt="近世代数" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔄';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">近世代数</div>
+                    <div class="course-description">群论、环论、域论、伽罗瓦理论等抽象代数核心内容</div>
+                    <div class="course-meta">
+                        <span class="course-pages">88页</span>
+                        <span class="course-difficulty difficulty-hard">较难</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/拓扑学.pdf" data-tooltip="拓扑学速通笔记 - 点集拓扑与代数拓扑">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/拓扑学_首页.jpg" alt="拓扑学" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🌐';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">拓扑学</div>
+                    <div class="course-description">点集拓扑、连续映射、连通性、紧性、基本群等概念</div>
+                    <div class="course-meta">
+                        <span class="course-pages">68页</span>
+                        <span class="course-difficulty difficulty-hard">较难</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/运筹学.pdf" data-tooltip="运筹学速通笔记 - 优化理论与方法">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/运筹学_首页.jpg" alt="运筹学" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📊';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">运筹学</div>
+                    <div class="course-description">线性规划、整数规划、动态规划、图论、排队论等</div>
+                    <div class="course-meta">
+                        <span class="course-pages">112页</span>
+                        <span class="course-difficulty difficulty-medium">中等</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数学建模.pdf" data-tooltip="数学建模速通笔记 - 建模方法与案例">
+                <div class="pdf-preview">
+                    <img src="file:///C:/Users/Desktop/MathNotes/数学建模_首页.jpg" alt="数学建模" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🏗️';">
+                    <div class="pdf-icon-overlay">📄</div>
+                </div>
+                <div class="course-info">
+                    <div class="course-title">数学建模</div>
+                    <div class="course-description">建模方法、优化模型、统计模型、案例分析、论文写作</div>
+                    <div class="course-meta">
+                        <span class="course-pages">156页</span>
+                        <span class="course-difficulty difficulty-medium">中等</span>
+                    </div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // 获取所有课程卡片
+        const courseCards = document.querySelectorAll('.course-card');
+        const tooltip = document.getElementById('tooltip');
+
+        // 为每个课程卡片添加事件监听器
+        courseCards.forEach(card => {
+            // 鼠标悬停显示提示
+            card.addEventListener('mouseenter', function(e) {
+                const tooltipText = this.getAttribute('data-tooltip');
+                tooltip.textContent = tooltipText;
+                tooltip.style.opacity = '1';
+            });
+
+            // 鼠标移动时更新提示位置
+            card.addEventListener('mousemove', function(e) {
+                tooltip.style.left = e.clientX + 10 + 'px';
+                tooltip.style.top = e.clientY - 40 + 'px';
+            });
+
+            // 鼠标离开隐藏提示
+            card.addEventListener('mouseleave', function() {
+                tooltip.style.opacity = '0';
+            });
+
+            // 点击打开PDF
+            card.addEventListener('click', function() {
+                const pdfPath = this.getAttribute('data-pdf');
+                
+                // 显示加载动画
+                this.classList.add('loading');
+                
+                // 模拟加载延迟
+                setTimeout(() => {
+                    this.classList.remove('loading');
+                    
+                    // 尝试打开PDF文件
+                    try {
+                        // 创建隐藏的a标签来下载文件
+                        const link = document.createElement('a');
+                        link.href = pdfPath;
+                        link.download = pdfPath.split('/').pop();
+                        link.target = '_blank';
+                        link.click();
+                        
+                        // 如果下载失败，显示提示
+                        setTimeout(() => {
+                            alert('文件下载已开始。如果无法自动下载，请检查文件路径是否正确，或手动复制以下路径到浏览器地址栏打开：\n\n' + pdfPath);
+                        }, 1000);
+                        
+                    } catch (error) {
+                        alert('无法打开文件：' + error.message + '\n\n请检查文件路径是否正确，或手动复制以下路径到浏览器地址栏打开：\n\n' + pdfPath);
+                    }
+                }, 800);
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                tooltip.style.opacity = '0';
+            }
+        });
+
+        // 页面加载完成后的动画效果
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+            
+            setTimeout(() => {
+                console.log('📐 欢迎使用数学专业速通笔记系统！');
+                console.log('💡 提示：将鼠标悬停在卡片上可查看详细信息，点击即可打开对应PDF文件');
+                console.log('📸 如需显示PDF首页缩略图，请将图片文件放在对应路径');
+            }, 2000);
+        });
+
+        // 搜索功能（可选）
+        function searchCourses(keyword) {
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach(card => {
+                const title = card.querySelector('.course-title').textContent.toLowerCase();
+                const description = card.querySelector('.course-description').textContent.toLowerCase();
+                
+                if (title.includes(keyword.toLowerCase()) || description.includes(keyword.toLowerCase())) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 添加简单的搜索框（可选）
+        const searchBox = document.createElement('div');
+        searchBox.innerHTML = `
+            <div style="text-align: center; margin: 20px 0;">
+                <input type="text" id="searchInput" placeholder="搜索课程..." style="
+                    padding: 10px 20px;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 25px;
+                    width: 300px;
+                    font-size: 1em;
+                    outline: none;
+                    background: rgba(0, 0, 0, 0.2);
+                    color: white;
+                    backdrop-filter: blur(5px);
+                    -webkit-backdrop-filter: blur(5px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                ">
+            </div>
+        `;
+        document.querySelector('.header').appendChild(searchBox.firstElementChild);
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            searchCourses(e.target.value);
+        });
+    </script>
+</body>
+</html>

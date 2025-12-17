@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>期末考试指导</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            transform: rotate(45deg);
+            z-index: -1;
+            animation: shine 6s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pdf-item {
+            position: relative;
+            cursor: pointer;
+            transform: scale(1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .pdf-item:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.4);
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .pdf-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(0, 150, 255, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pdf-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .pdf-item:hover .pdf-thumbnail::before {
+            transform: translateX(100%);
+        }
+
+        .pdf-info {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pdf-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .pdf-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .pdf-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 200, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .tooltip {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+            max-width: 200px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .pdf-item:hover .tooltip {
+            opacity: 1;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .pdf-item.loading .loading-overlay {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #00c8ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .tips {
+            background: rgba(0, 200, 255, 0.15);
+            border-left: 4px solid #00c8ff;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .tips h3 {
+            margin-bottom: 10px;
+            color: #00c8ff;
+        }
+
+        .tips ul {
+            margin-left: 20px;
+        }
+
+        .tips li {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 期末考试指导</h1>
+        <p class="subtitle">点击下方的复习资料即可打开相应的PDF文件</p>
+        
+        <div class="tips">
+            <h3>💡 使用提示</h3>
+            <ul>
+                <li>将鼠标悬停在卡片上可查看文件路径</li>
+                <li>点击卡片即可打开对应的PDF文件</li>
+                <li>建议下载到本地后使用Adobe Reader或浏览器打开</li>
+            </ul>
+        </div>
+
+        <div class="pdf-grid">
+            
+            <a class="pdf-item"
+               href="math.html"
+               data-tooltip="数学复习资料 - 包含所有重点公式和例题">
+               <div class="pdf-thumbnail">
+                   📐 数学复习
+                 <div class="pdf-icon">📄</div>
+               </div>
+               <div class="pdf-info">
+                 <div class="pdf-title">数学复习资料</div>
+                 <div class="pdf-description">高等数学重点公式、典型例题解析、历年真题汇总</div>
+              </div>
+    <!--  loading 层不再需要，可删  -->
+              <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </a>
+           
+
+            <div class="pdf-item" data-pdf="file:///C:/Users/Desktop/英语词汇.pdf" data-tooltip="英语词汇手册 - 包含核心词汇和例句">
+                <div class="pdf-thumbnail">
+                    🔤 英语词汇
+                    <div class="pdf-icon">📄</div>
+                </div>
+                <div class="pdf-info">
+                    <div class="pdf-title">英语词汇手册</div>
+                    <div class="pdf-description">核心词汇表、高频短语、作文万能句式模板</div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="pdf-item" data-pdf="file:///C:/Users/Desktop/物理实验.pdf" data-tooltip="物理实验指导 - 详细实验步骤和注意事项">
+                <div class="pdf-thumbnail">
+                    ⚗️ 物理实验
+                    <div class="pdf-icon">📄</div>
+                </div>
+                <div class="pdf-info">
+                    <div class="pdf-title">物理实验指导</div>
+                    <div class="pdf-description">实验报告模板、数据处理方法、常见误差分析</div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="pdf-item" data-pdf="file:///C:/Users/Desktop/化学公式.pdf" data-tooltip="化学公式大全 - 重要反应方程式">
+                <div class="pdf-thumbnail">
+                    🧪 化学公式
+                    <div class="pdf-icon">📄</div>
+                </div>
+                <div class="pdf-info">
+                    <div class="pdf-title">化学公式大全</div>
+                    <div class="pdf-description">重要化学反应方程式、元素周期表、实验现象总结</div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="pdf-item" data-pdf="file:///C:/Users/Desktop/历史时间线.pdf" data-tooltip="历史时间线 - 重要事件年表">
+                <div class="pdf-thumbnail">
+                    📅 历史时间线
+                    <div class="pdf-icon">📄</div>
+                </div>
+                <div class="pdf-info">
+                    <div class="pdf-title">历史时间线</div>
+                    <div class="pdf-description">中外历史大事年表、重要人物、历史事件对比</div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="pdf-item" data-pdf="file:///C:/Users/Desktop/政治要点.pdf" data-tooltip="政治要点总结 - 核心概念和理论">
+                <div class="pdf-thumbnail">
+                    🏛️ 政治要点
+                    <div class="pdf-icon">📄</div>
+                </div>
+                <div class="pdf-info">
+                    <div class="pdf-title">政治要点总结</div>
+                    <div class="pdf-description">马克思主义基本原理、时事政治热点、答题技巧</div>
+                </div>
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // 获取所有PDF项目
+        const pdfItems = document.querySelectorAll('.pdf-item');
+        const tooltip = document.getElementById('tooltip');
+
+        // 为每个PDF项目添加事件监听器
+        pdfItems.forEach(item => {
+            // 鼠标悬停显示提示
+            item.addEventListener('mouseenter', function(e) {
+                const tooltipText = this.getAttribute('data-tooltip');
+                tooltip.textContent = tooltipText;
+                tooltip.style.opacity = '1';
+            });
+
+            // 鼠标移动时更新提示位置
+            item.addEventListener('mousemove', function(e) {
+                tooltip.style.left = e.clientX + 10 + 'px';
+                tooltip.style.top = e.clientY - 40 + 'px';
+            });
+
+            // 鼠标离开隐藏提示
+            item.addEventListener('mouseleave', function() {
+                tooltip.style.opacity = '0';
+            });
+
+            // 点击打开PDF
+            item.addEventListener('click', function() {
+                const pdfPath = this.getAttribute('data-pdf');
+                
+                // 显示加载动画
+                this.classList.add('loading');
+                
+                // 模拟加载延迟
+                setTimeout(() => {
+                    this.classList.remove('loading');
+                    
+                    // 尝试打开PDF文件
+                    try {
+                        // 创建隐藏的a标签来下载文件
+                        const link = document.createElement('a');
+                        link.href = pdfPath;
+                        link.download = pdfPath.split('/').pop();
+                        link.target = '_blank';
+                        link.click();
+                        
+                        // 如果下载失败，显示提示
+                        setTimeout(() => {
+                            alert('文件下载已开始。如果无法自动下载，请检查文件路径是否正确，或手动复制以下路径到浏览器地址栏打开：\n\n' + pdfPath);
+                        }, 1000);
+                        
+                    } catch (error) {
+                        alert('无法打开文件：' + error.message + '\n\n请检查文件路径是否正确，或手动复制以下路径到浏览器地址栏打开：\n\n' + pdfPath);
+                    }
+                }, 800);
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                tooltip.style.opacity = '0';
+            }
+        });
+
+        // 页面加载完成后的欢迎提示
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                console.log('📚 欢迎使用期末考试指导系统！');
+                console.log('💡 提示：将鼠标悬停在卡片上可查看文件信息，点击即可打开PDF文件');
+                console.log('🔧 如需修改PDF文件路径，请编辑HTML文件中的data-pdf属性');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
