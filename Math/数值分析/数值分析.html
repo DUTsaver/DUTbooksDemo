@@ -1,0 +1,373 @@
+<head>
+    <meta charset="UTF-8">
+    <title>数值分析 | 期末考试指导</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* ---- 通用样式 ---- */
+        :root {
+            --theme: #00c8ff;
+            --glass: rgba(255, 255, 255, .08);
+            --blur: blur(12px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            text-shadow: 0 0 10px var(--theme)
+        }
+
+        .subtitle,
+        .intro {
+            text-align: center;
+            margin: 10px 0 20px;
+            color: rgba(255, 255, 255, .8)
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 4px 14px;
+            background: rgba(244, 67, 54, .25);
+            border: 1px solid rgba(244, 67, 54, .5);
+            border-radius: 15px;
+            font-size: .85em;
+            font-weight: bold;
+            color: #f44336;
+        }
+
+        .section-title {
+            font-size: 1.6em;
+            margin: 40px 0 20px;
+            border-left: 4px solid var(--theme);
+            padding-left: 10px;
+        }
+
+        /* ---- 卡片网格 ---- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .pdf-card {
+            position: relative;
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 200, 255, .4);
+            border-color: var(--theme);
+        }
+
+        .pdf-cover {
+            width: 100%;
+            height: 260px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, .2) 0%, rgba(0, 150, 255, .3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2.2em;
+            text-shadow: 0 0 10px rgba(0, 200, 255, .7);
+            position: relative;
+        }
+
+        .pdf-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pdf-cover.no-image::after {
+            content: attr(data-emoji);
+            font-size: 1.4em
+        }
+
+        .pdf-name {
+            padding: 12px 10px;
+            text-align: center;
+            font-size: .95em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ---- 加载动画 ---- */
+        .loading {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .pdf-card.loading .loading {
+            opacity: 1
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 4px solid rgba(255, 255, 255, .3);
+            border-top-color: var(--theme);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* ---- 响应式 ---- */
+        @media(max-width:600px) {
+            h1 {
+                font-size: 2.2em
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))
+            }
+        }
+
+        .back-btn {
+            position: static;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../math.html" class="back-btn">← 返回主页</a>
+        <h1>数值分析</h1>
+        <p class="subtitle>Numerical Analysis · 计算数学核心课程</p>
+    <p class=" intro">
+        <p>一门<strong>理论不算深、但极其考验细节与计算能力</strong>的数学课。</p>
+        <p>主要内容包括：插值、多项式逼近、数值积分、线性方程组数值解、常微分方程数值方法等。</p>
+        <p>特点是：<strong>公式多、套路强、考试高度模板化</strong>。</p>
+        <br>
+        <p>如果你 PDE / 实变 / 泛函还能靠“理解”，</p>
+        <p>那数值分析基本靠：<strong>熟练 + 不出低级错误</strong>。</p>
+        <div style="text-align:center;margin-bottom:30px">
+            <span class="difficulty">难度：困难 给分：低 </span>
+        </div>
+
+        <!-- 栏目 1：参考书目 -->
+        <h2 class="section-title">📚 参考书目</h2>
+        <div class="card-grid" id="books">
+            <!-- 卡片 1 -->
+            <div class="pdf-card" data-pdf="实变函数论(第3版) (周民强).pdf" data-cover="实变函数论-周民强_首页.jpg" data-name="周民强《实变函数论》">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            <!-- 卡片 2 -->
+            <div class="pdf-card" data-pdf="RealAnalysis-Folland.pdf" data-cover="RealAnalysis-Folland_首页.jpg"
+                data-name="Folland《Real Analysis》">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            <!-- 如需更多，按同样格式继续追加 -->
+        </div>
+
+        <!-- 栏目 2：速通笔记 -->
+        <h2 class="section-title">🚀 速通笔记</h2>
+        <div class="card-grid" id="notes">
+            <div class="pdf-card" data-pdf="NOTE.pdf" data-cover="首页.png" data-name="Ziyaoの数值分析笔记">
+            </div>
+            <div class="pdf-card" data-pdf="实变函数-速通笔记2.pdf" data-cover="实变函数-速通笔记2_首页.jpg" data-name="积分收敛定理总结"></div>
+        </div>
+
+        <!-- 栏目 3：历年试卷 -->
+        <h2 class="section-title">📝 历年试卷</h2>
+        <div class="card-grid" id="papers">
+            <div class="pdf-card" data-pdf="2023-实变函数-期末A卷.pdf" data-cover="2023-实变函数-期末A卷_首页.jpg"
+                data-name="2023 期末 A 卷"></div>
+            <div class="pdf-card" data-pdf="2022-实变函数-期末B卷.pdf" data-cover="2022-实变函数-期末B卷_首页.jpg"
+                data-name="2022 期末 B 卷"></div>
+        </div>
+    </div>
+
+    <script>
+        /* ---------- 通用逻辑 ---------- */
+        function buildCard(el) {
+            const pdf = el.dataset.pdf;
+            const cover = el.dataset.cover;
+            const name = el.dataset.name;
+            /* 封面图 */
+            const coverEl = document.createElement('div');
+            coverEl.className = 'pdf-cover';
+            if (cover) {
+                const img = new Image();
+                img.src = cover;
+                img.alt = name;
+                img.onerror = () => { coverEl.classList.add('no-image'); coverEl.setAttribute('data-emoji', '📄'); };
+                coverEl.appendChild(img);
+            } else {
+                coverEl.classList.add('no-image');
+                coverEl.setAttribute('data-emoji', '📄');
+            }
+            /* 文件名 */
+            const nameEl = document.createElement('div');
+            nameEl.className = 'pdf-name';
+            nameEl.textContent = name;
+            el.append(coverEl, nameEl);
+        }
+        /* 点击：直接打开本地 PDF（浏览器阅读器） */
+        document.addEventListener('click', e => {
+            const card = e.target.closest('.pdf-card');
+            if (!card) return;
+            const pdf = card.dataset.pdf;
+            if (!pdf) return;
+            card.classList.add('loading');
+            setTimeout(() => {          /* 假装加载 */
+                card.classList.remove('loading');
+                window.location.href = pdf;   // 仅打开，不下载
+            }, 400);
+        });
+        /* 初始化 */
+        document.querySelectorAll('.pdf-card').forEach(buildCard);
+    </script>
+
+    <!-- ===================== 评论区外壳 ===================== -->
+    <section id="comment-shell">
+        <h3>💬 留下你的评论</h3>
+
+        <!-- 用户信息栏 -->
+        <div class="comment-meta">
+            <input type="text" id="user-name" placeholder="用户名（必填）">
+            <input type="email" id="user-email" placeholder="邮箱（必填，用于头像）">
+        </div>
+
+        <!-- 内容区 -->
+        <textarea id="comment-content" rows="4" placeholder="说说你的想法…"></textarea>
+
+        <!-- 发布按钮 -->
+        <button id="comment-submit">发布评论</button>
+
+        <!-- 第三方评论系统会在这里渲染列表 -->
+        <!-- 插件插这里 -->
+        <div id="comment-list"></div>
+    </section>
+
+    <style>
+        /* ===== 外壳样式 ===== */
+        #comment-shell {
+            max-width: 800px;
+            margin: 60px auto 40px;
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 16px;
+            padding: 30px;
+            color: #fff;
+        }
+
+        #comment-shell h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.4em
+        }
+
+        .comment-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px
+        }
+
+        .comment-meta input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, .25);
+            color: #fff;
+            outline: none;
+        }
+
+        .comment-meta input::placeholder {
+            color: rgba(255, 255, 255, .6)
+        }
+
+        #comment-content {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, .25);
+            color: #fff;
+            resize: vertical;
+            outline: none;
+        }
+
+        #comment-submit {
+            margin-top: 12px;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            background: #00c8ff;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        #comment-submit:hover {
+            background: #0099cc
+        }
+
+        #comment-list {
+            margin-top: 30px
+        }
+
+        /* 适配移动端 */
+        @media(max-width:600px) {
+            .comment-meta {
+                flex-direction: column
+            }
+        }
+    </style>
+</body>
+
+</html>

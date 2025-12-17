@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,9 +28,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 0%, transparent 20%);
+            background:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
             z-index: -1;
         }
 
@@ -54,15 +55,20 @@
             left: -50%;
             right: -50%;
             bottom: -50%;
-            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
             transform: rotate(45deg);
             z-index: -1;
             animation: shine 6s infinite linear;
         }
 
         @keyframes shine {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
         }
 
         .header {
@@ -273,8 +279,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .no-image {
@@ -322,19 +333,19 @@
             .container {
                 padding: 20px;
             }
-            
+
             h1 {
                 font-size: 2em;
             }
-            
+
             .course-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .stats-bar {
                 flex-direction: column;
             }
-            
+
             .back-btn {
                 position: static;
                 margin-bottom: 20px;
@@ -343,10 +354,11 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <a href="index.html" class="back-btn">← 返回主页</a>
-        
+
         <div class="header">
             <h1>📐 数学专业速通笔记</h1>
             <p class="subtitle">点击课程卡片即可查看对应速通笔记PDF</p>
@@ -372,9 +384,11 @@
         </div>
 
         <div class="course-grid">
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数学分析.pdf" data-tooltip="数学分析速通笔记 - 包含极限、连续、导数、积分等核心概念">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数学分析.pdf"
+                data-tooltip="数学分析速通笔记 - 包含极限、连续、导数、积分等核心概念">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/数学分析_首页.jpg" alt="数学分析" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📊';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/数学分析_首页.jpg" alt="数学分析"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📊';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -393,33 +407,34 @@
 
             <a href="高等代数.pdf" target="_blank" style="text-decoration:none;color:inherit;">
                 <div class="course-card" data-pdf="高等代数.pdf" data-tooltip="高等代数速通笔记 - 线性空间、矩阵理论">
-                 <div class="pdf-preview">
-                  <img src="高等代数_首页.jpg" alt="高等代数"
-                     onerror="this.style.display='none';
+                    <div class="pdf-preview">
+                        <img src="高等代数_首页.jpg" alt="高等代数" onerror="this.style.display='none';
                               this.parentElement.classList.add('no-image');
                               this.parentElement.innerHTML += '📏';">
-                  <div class="pdf-icon-overlay">📄</div>
-                 </div>
-                 <div class="course-info">
-                    <div class="course-title">高等代数</div>
-                    <div class="course-description">线性空间、线性变换、矩阵理论、特征值、二次型等重点内容
-                </div>
-                    <div class="course-meta">
-                        <span class="course-pages">96页</span>
-                        <span class="course-difficulty difficulty-hard">中等</span>
+                        <div class="pdf-icon-overlay">📄</div>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-title">高等代数</div>
+                        <div class="course-description">线性空间、线性变换、矩阵理论、特征值、二次型等重点内容
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-pages">96页</span>
+                            <span class="course-difficulty difficulty-hard">中等</span>
+                        </div>
+                    </div>
+                    <div class="loading-overlay">
+                        <div class="spinner"></div>
                     </div>
                 </div>
-                <div class="loading-overlay">
-                    <div class="spinner"></div>
-                </div>
-             </div>
             </a>
 
-           
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/解析几何.pdf" data-tooltip="解析几何速通笔记 - 向量代数与空间几何">
+
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/解析几何.pdf"
+                data-tooltip="解析几何速通笔记 - 向量代数与空间几何">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/解析几何_首页.jpg" alt="解析几何" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📐';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/解析几何_首页.jpg" alt="解析几何"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📐';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -435,9 +450,11 @@
                 </div>
             </div>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/概率论与数理统计.pdf" data-tooltip="概率统计速通笔记 - 概率分布与统计推断">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/概率论与数理统计.pdf"
+                data-tooltip="概率统计速通笔记 - 概率分布与统计推断">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/概率论与数理统计_首页.jpg" alt="概率论与数理统计" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🎲';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/概率论与数理统计_首页.jpg" alt="概率论与数理统计"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🎲';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -453,9 +470,11 @@
                 </div>
             </div>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/常微分方程.pdf" data-tooltip="常微分方程速通笔记 - 解法和应用">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/常微分方程.pdf"
+                data-tooltip="常微分方程速通笔记 - 解法和应用">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/常微分方程_首页.jpg" alt="常微分方程" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🧮';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/常微分方程_首页.jpg" alt="常微分方程"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🧮';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -471,9 +490,11 @@
                 </div>
             </div>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/复变函数.pdf" data-tooltip="复变函数速通笔记 - 解析函数与积分">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/复变函数.pdf"
+                data-tooltip="复变函数速通笔记 - 解析函数与积分">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/复变函数_首页.jpg" alt="复变函数" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔷';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/复变函数_首页.jpg" alt="复变函数"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔷';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -490,52 +511,56 @@
             </div>
 
             <a href="Math\实变函数\realanalysis.html" target="_blank" style="text-decoration:none;color:inherit;">
-                <div class="course-card" data-pdf="实变函数.pdf" data-tooltip="实变函数速通笔记 - 测度论与积分">
-                 <div class="pdf-preview">
-                  <img src="实变函数_首页.jpg" alt="实变函数"
-                     onerror="this.style.display='none';
+                <div class="course-card" data-tooltip="实变函数速通笔记 - 测度论与积分">
+                    <div class="pdf-preview">
+                        <img src="实变函数_首页.jpg" alt="实变函数" onerror="this.style.display='none';
                               this.parentElement.classList.add('no-image');
                               this.parentElement.innerHTML += '📏';">
-                  <div class="pdf-icon-overlay">📄</div>
-                 </div>
-                 <div class="course-info">
-                    <div class="course-title">实变函数</div>
-                    <div class="course-description">测度论、勒贝格积分、函数空间、收敛定理等抽象理论
-                </div>
-                    <div class="course-meta">
-                        <span class="course-pages">76页</span>
-                        <span class="course-difficulty difficulty-hard">较难</span>
+                        <div class="pdf-icon-overlay">📄</div>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-title">实变函数</div>
+                        <div class="course-description">测度论、勒贝格积分、函数空间、收敛定理等抽象理论
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-pages">76页</span>
+                            <span class="course-difficulty difficulty-hard">较难</span>
+                        </div>
+                    </div>
+                    <div class="loading-overlay">
+                        <div class="spinner"></div>
                     </div>
                 </div>
-                <div class="loading-overlay">
-                    <div class="spinner"></div>
-                </div>
-             </div>
             </a>
 
-            
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数值分析.pdf" data-tooltip="数值分析速通笔记 - 计算方法与算法">
-                <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/数值分析_首页.jpg" alt="数值分析" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '💻';">
-                    <div class="pdf-icon-overlay">📄</div>
-                </div>
-                <div class="course-info">
-                    <div class="course-title">数值分析</div>
-                    <div class="course-description">插值法、数值积分、线性方程组求解、微分方程数值解</div>
-                    <div class="course-meta">
-                        <span class="course-pages">104页</span>
-                        <span class="course-difficulty difficulty-medium">中等</span>
+
+            <a href="Math\数值分析\数值分析.html" target="_blank" style="text-decoration:none;color:inherit;">
+                <div data-tooltip="数值分析速通笔记 - 计算方法与算法">
+                    <div class="pdf-preview">
+                        <img src="file:///C:/Users/Desktop/MathNotes/数值分析_首页.jpg" alt="数值分析"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '💻';">
+                        <div class="pdf-icon-overlay">📄</div>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-title">数值分析</div>
+                        <div class="course-description">插值法、数值积分、线性方程组求解、微分方程数值解</div>
+                        <div class="course-meta">
+                            <span class="course-pages">104页</span>
+                            <span class="course-difficulty difficulty-medium">中等</span>
+                        </div>
+                    </div>
+                    <div class="loading-overlay">
+                        <div class="spinner"></div>
                     </div>
                 </div>
-                <div class="loading-overlay">
-                    <div class="spinner"></div>
-                </div>
-            </div>
+            </a>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/近世代数.pdf" data-tooltip="近世代数速通笔记 - 群环域理论">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/近世代数.pdf"
+                data-tooltip="近世代数速通笔记 - 群环域理论">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/近世代数_首页.jpg" alt="近世代数" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔄';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/近世代数_首页.jpg" alt="近世代数"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🔄';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -551,9 +576,11 @@
                 </div>
             </div>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/拓扑学.pdf" data-tooltip="拓扑学速通笔记 - 点集拓扑与代数拓扑">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/拓扑学.pdf"
+                data-tooltip="拓扑学速通笔记 - 点集拓扑与代数拓扑">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/拓扑学_首页.jpg" alt="拓扑学" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🌐';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/拓扑学_首页.jpg" alt="拓扑学"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🌐';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -569,9 +596,11 @@
                 </div>
             </div>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/运筹学.pdf" data-tooltip="运筹学速通笔记 - 优化理论与方法">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/运筹学.pdf"
+                data-tooltip="运筹学速通笔记 - 优化理论与方法">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/运筹学_首页.jpg" alt="运筹学" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📊';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/运筹学_首页.jpg" alt="运筹学"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '📊';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -587,9 +616,11 @@
                 </div>
             </div>
 
-            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数学建模.pdf" data-tooltip="数学建模速通笔记 - 建模方法与案例">
+            <div class="course-card" data-pdf="file:///C:/Users/Desktop/MathNotes/数学建模.pdf"
+                data-tooltip="数学建模速通笔记 - 建模方法与案例">
                 <div class="pdf-preview">
-                    <img src="file:///C:/Users/Desktop/MathNotes/数学建模_首页.jpg" alt="数学建模" onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🏗️';">
+                    <img src="file:///C:/Users/Desktop/MathNotes/数学建模_首页.jpg" alt="数学建模"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('no-image'); this.parentElement.innerHTML += '🏗️';">
                     <div class="pdf-icon-overlay">📄</div>
                 </div>
                 <div class="course-info">
@@ -617,34 +648,34 @@
         // 为每个课程卡片添加事件监听器
         courseCards.forEach(card => {
             // 鼠标悬停显示提示
-            card.addEventListener('mouseenter', function(e) {
+            card.addEventListener('mouseenter', function (e) {
                 const tooltipText = this.getAttribute('data-tooltip');
                 tooltip.textContent = tooltipText;
                 tooltip.style.opacity = '1';
             });
 
             // 鼠标移动时更新提示位置
-            card.addEventListener('mousemove', function(e) {
+            card.addEventListener('mousemove', function (e) {
                 tooltip.style.left = e.clientX + 10 + 'px';
                 tooltip.style.top = e.clientY - 40 + 'px';
             });
 
             // 鼠标离开隐藏提示
-            card.addEventListener('mouseleave', function() {
+            card.addEventListener('mouseleave', function () {
                 tooltip.style.opacity = '0';
             });
 
             // 点击打开PDF
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 const pdfPath = this.getAttribute('data-pdf');
-                
+
                 // 显示加载动画
                 this.classList.add('loading');
-                
+
                 // 模拟加载延迟
                 setTimeout(() => {
                     this.classList.remove('loading');
-                    
+
                     // 尝试打开PDF文件
                     try {
                         // 创建隐藏的a标签来下载文件
@@ -653,12 +684,12 @@
                         link.download = pdfPath.split('/').pop();
                         link.target = '_blank';
                         link.click();
-                        
+
                         // 如果下载失败，显示提示
                         setTimeout(() => {
                             alert('文件下载已开始。如果无法自动下载，请检查文件路径是否正确，或手动复制以下路径到浏览器地址栏打开：\n\n' + pdfPath);
                         }, 1000);
-                        
+
                     } catch (error) {
                         alert('无法打开文件：' + error.message + '\n\n请检查文件路径是否正确，或手动复制以下路径到浏览器地址栏打开：\n\n' + pdfPath);
                     }
@@ -667,28 +698,28 @@
         });
 
         // 添加键盘导航支持
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 tooltip.style.opacity = '0';
             }
         });
 
         // 页面加载完成后的动画效果
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const cards = document.querySelectorAll('.course-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(30px)';
                     card.style.transition = 'all 0.6s ease';
-                    
+
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
                     }, 100);
                 }, index * 100);
             });
-            
+
             setTimeout(() => {
                 console.log('📐 欢迎使用数学专业速通笔记系统！');
                 console.log('💡 提示：将鼠标悬停在卡片上可查看详细信息，点击即可打开对应PDF文件');
@@ -702,7 +733,7 @@
             cards.forEach(card => {
                 const title = card.querySelector('.course-title').textContent.toLowerCase();
                 const description = card.querySelector('.course-description').textContent.toLowerCase();
-                
+
                 if (title.includes(keyword.toLowerCase()) || description.includes(keyword.toLowerCase())) {
                     card.style.display = 'block';
                 } else {
@@ -732,9 +763,10 @@
         `;
         document.querySelector('.header').appendChild(searchBox.firstElementChild);
 
-        document.getElementById('searchInput').addEventListener('input', function(e) {
+        document.getElementById('searchInput').addEventListener('input', function (e) {
             searchCourses(e.target.value);
         });
     </script>
 </body>
+
 </html>
